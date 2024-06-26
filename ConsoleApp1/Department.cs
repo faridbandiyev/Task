@@ -1,5 +1,6 @@
 ﻿using DepartmentTask.MyExtensions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DepartmentTask
 {
-    public class Department
+    public class Department:IEnumerable
     {
         public string Name { get; }
         public int EmployeeLimit { get; }
@@ -31,6 +32,14 @@ namespace DepartmentTask
             set
             {
                 employees[index] = value;
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < employeeCount; i++)
+            {
+                yield return employees[i];
             }
         }
 
